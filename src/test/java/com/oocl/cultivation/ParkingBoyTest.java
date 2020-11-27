@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -39,6 +40,24 @@ class ParkingBoyTest {
         assertNotNull(ticket);
 
     }
+    @Test
+    public void should_be_parked_when_park_multiple_cars_given_multiple_car_and_parking_lot_only_1_space() {
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot = new ParkingLot(1);
+                
+        //when
+        Ticket ticket1 = parkingLot.park(car1);
+        Ticket ticket2 = parkingLot.park(car2);
+        
+        
+        //then
+        assertNotNull(ticket1);
+        assertNull(ticket2);
+        
+    }
+    
 
 
 }
