@@ -11,6 +11,6 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
-        return new Ticket();
+        return parkingLot.park(car);
     }
 }
