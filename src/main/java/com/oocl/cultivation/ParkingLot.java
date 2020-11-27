@@ -34,7 +34,9 @@ public class ParkingLot {
     }
 
     public boolean isTicketValid(Ticket ticket) {
-
+        if(ticketCarMap.containsKey(ticket)){
+            return false;
+        }
         return true;
     }
 }
