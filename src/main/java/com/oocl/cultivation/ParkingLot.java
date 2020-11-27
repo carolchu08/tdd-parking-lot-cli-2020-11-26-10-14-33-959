@@ -14,13 +14,13 @@ public class ParkingLot {
     }
     public ParkingLot(){
         this.capacity = 1;
+        ticketCarMap = new HashMap<>();
     }
 
     public Ticket park(Car car) {
-        if(capacity<=0){
+        if(capacity-ticketCarMap.size()<=0){
             return null;
         }
-        capacity--;
         Ticket ticket = new Ticket();
         this.ticketCarMap.put(ticket,car);
         return ticket;

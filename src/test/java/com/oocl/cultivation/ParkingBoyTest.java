@@ -40,21 +40,20 @@ class ParkingBoyTest {
 
     }
     @Test
-    public void should_be_parked_when_park_multiple_cars_given_multiple_car_and_parking_lot_only_1_space() {
+    public void should_display_not_enough_space_msg_when_park_multiple_cars_given_multiple_car_and_parking_lot_only_1_space() throws NotEnoughSpaceException{
         //given
         Car car1 = new Car();
         Car car2 = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
                 
         //when
-        Ticket ticket1 = parkingLot.park(car1);
-        Ticket ticket2 = parkingLot.park(car2);
+        parkingLot.park(car1);
+        NotEnoughSpaceException notEnoughSpaceException = assertThrows(NotEnoughSpaceException.class, ()->{parkingLot.park(car2);});
+
         
         
         //then
-        assertNotNull(ticket1);
-        assertNull(ticket2);
-        
+        assertEquals("Not enough space", notEnoughSpaceException);
     }
     @Test
     public void should_return_car_when_fetch_car_given_parking_lot_that_parked_the_car() {
@@ -73,7 +72,7 @@ class ParkingBoyTest {
         assertEquals(car,resultCar);
     }
     @Test
-    public void should_return_null_when_fetched_car_given_used_ticket() {
+    public void should_return_false_when_fetched_car_given_used_ticket() {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
@@ -84,7 +83,7 @@ class ParkingBoyTest {
         //then
         assertEquals(false, isTicketValid);
     }
-    
+
     
 
 
