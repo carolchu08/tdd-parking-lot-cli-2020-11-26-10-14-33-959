@@ -72,6 +72,18 @@ class ParkingBoyTest {
         //then
         assertEquals(car,resultCar);
     }
+    @Test
+    public void should_return_null_when_fetched_car_given_used_ticket() {
+        //given
+        Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot(1);
+        Ticket ticket = parkingLot.park(car);
+        //when
+        boolean isTicketValid = parkingLot.isTicketValid(ticket);
+        
+        //then
+        assertEquals(false, isTicketValid);
+    }
     
     
 

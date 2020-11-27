@@ -31,6 +31,10 @@ public class ParkingLot {
         }
         return null;
 
+    }
 
+    public boolean isTicketValid(Ticket ticket) {
+
+        return true;
     }
 }
