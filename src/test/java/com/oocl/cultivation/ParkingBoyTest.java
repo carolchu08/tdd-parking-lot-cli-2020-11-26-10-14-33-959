@@ -12,7 +12,7 @@ import static org.mockito.Mockito.verify;
 
 class ParkingBoyTest {
     @Test
-    public void should_parking_boy_call_parking_lot_park_function_once_when_park_the_car() {
+    public void should_parking_boy_call_parking_lot_park_function_once_when_park_the_car() throws NotEnoughSpaceException{
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -26,7 +26,7 @@ class ParkingBoyTest {
 
     }
     @Test
-    public void should_return_a_parking_ticket_when_park_the_car_given_a_car_and_parking() {
+    public void should_return_a_parking_ticket_when_park_the_car_given_a_car_and_parking() throws NotEnoughSpaceException{
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -53,10 +53,10 @@ class ParkingBoyTest {
         
         
         //then
-        assertEquals("Not enough space", notEnoughSpaceException);
+        assertEquals("Not enough space", notEnoughSpaceException.getMessage());
     }
     @Test
-    public void should_return_car_when_fetch_car_given_parking_lot_that_parked_the_car() {
+    public void should_return_car_when_fetch_car_given_parking_lot_that_parked_the_car() throws NotEnoughSpaceException{
         //given
         Car car = new Car();
 
@@ -72,7 +72,7 @@ class ParkingBoyTest {
         assertEquals(car,resultCar);
     }
     @Test
-    public void should_return_false_when_fetched_car_given_used_ticket() {
+    public void should_return_false_when_fetched_car_given_used_ticket() throws NotEnoughSpaceException{
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot(1);

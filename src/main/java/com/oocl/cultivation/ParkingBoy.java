@@ -10,7 +10,7 @@ public class ParkingBoy {
         this.parkingLot = parkingLot;
     }
 
-    public Ticket park(Car car) {
+    public Ticket park(Car car) throws NotEnoughSpaceException{
         return parkingLot.park(car);
     }
 }
