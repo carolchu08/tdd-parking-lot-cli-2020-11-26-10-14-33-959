@@ -21,10 +21,16 @@ public class ParkingLot {
             return null;
         }
         capacity--;
-        return new Ticket();
+        Ticket ticket = new Ticket();
+        this.ticketCarMap.put(ticket,car);
+        return ticket;
     }
     public Car fetchCar (Ticket ticket){
+        if(ticketCarMap.containsKey(ticket)){
+            return ticketCarMap.get(ticket);
+        }
+        return null;
 
-       return null;
+
     }
 }
