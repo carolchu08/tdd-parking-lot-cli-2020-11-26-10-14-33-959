@@ -79,9 +79,10 @@ class ParkingBoyTest {
         Ticket ticket = parkingLot.park(car);
         //when
         boolean isTicketValid = parkingLot.isTicketValid(ticket);
+        Car returnedCar = parkingLot.fetchedCar(isTicketValid,ticket);
         
         //then
-        assertEquals(false, isTicketValid);
+       assertNull(returnedCar);
     }
 
     

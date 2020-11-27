@@ -39,4 +39,11 @@ public class ParkingLot {
         }
         return true;
     }
+
+    public Car fetchedCar(boolean isTicketValid, Ticket ticket) {
+        if(isTicketValid){
+            return ticketCarMap.get(ticket);
+        }
+        return null;
+    }
 }
