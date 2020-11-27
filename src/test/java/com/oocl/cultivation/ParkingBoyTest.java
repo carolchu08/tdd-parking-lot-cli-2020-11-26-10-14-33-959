@@ -5,8 +5,7 @@ import org.mockito.Mockito;
 
 import java.util.Calendar;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -57,6 +56,23 @@ class ParkingBoyTest {
         assertNull(ticket2);
         
     }
+    @Test
+    public void should_return_car_when_fetch_car_given_parking_lot_that_parked_the_car() {
+        //given
+        Car car = new Car();
+
+        ParkingLot parkingLot = new ParkingLot(1);
+                
+        //when
+        Ticket ticket1 = parkingLot.park(car);
+        Car resultCar = parkingLot.fetchCar(ticket1);
+
+        
+        
+        //then
+        assertEquals(car,resultCar);
+    }
+    
     
 
 
