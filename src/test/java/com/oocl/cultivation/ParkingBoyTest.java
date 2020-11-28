@@ -219,10 +219,13 @@ class ParkingBoyTest {
         parkingBoyList.add(parkingBoy1);
         parkingBoyList.add(parkingBoy2);
         //when
-        parkingManager.addManagementList(parkingBoyList);
+        for (ParkingBoy parkingBoy : parkingBoyList) {
+            parkingManager.addManagementList(parkingBoy);
+        }
 
         //then
-        assertEquals("ParkingBoy1",parkingBoy1);
+        assertEquals(parkingBoy1,parkingManager.getParkingManagerList().get(0));
+        assertEquals(parkingBoy2,parkingManager.getParkingManagerList().get(1));
 
     }
 
