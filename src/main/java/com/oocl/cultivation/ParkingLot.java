@@ -27,23 +27,22 @@ public class ParkingLot {
     }
     public Car fetchCar (Ticket ticket){
         if(ticketCarMap.containsKey(ticket)){
-            return ticketCarMap.get(ticket);
+            Car fetchedCar = ticketCarMap.get(ticket);
+            ticketCarMap.remove(ticket, ticketCarMap.get(ticket));
+            return fetchedCar;
         }
         return null;
 
     }
 
-    public boolean isTicketValid(Ticket ticket) {
-        if(ticketCarMap.containsKey(ticket)){
-            return false;
-        }
-        return true;
-    }
 
-    public Car fetchedCar(boolean isTicketValid, Ticket ticket) {
-        if(isTicketValid){
-            return ticketCarMap.get(ticket);
+    public Car checkWrongTicket(Ticket ticket, Car expectedCar){
+
+        if(expectedCar.equals(ticketCarMap.get(ticket))){
+            return expectedCar;
         }
         return null;
+
     }
+
 }

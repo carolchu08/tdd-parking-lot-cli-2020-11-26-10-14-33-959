@@ -3,8 +3,6 @@ package com.oocl.cultivation;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.Calendar;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -72,18 +70,34 @@ class ParkingBoyTest {
         assertEquals(car,resultCar);
     }
     @Test
-    public void should_return_false_when_fetched_car_given_used_ticket() throws NotEnoughSpaceException{
+    public void should_return_null_when_fetched_car_given_used_ticket() throws NotEnoughSpaceException{
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
         Ticket ticket = parkingLot.park(car);
+        parkingLot.fetchCar(ticket);
         //when
-        boolean isTicketValid = parkingLot.isTicketValid(ticket);
-        Car returnedCar = parkingLot.fetchedCar(isTicketValid,ticket);
-        
+        Car fetchedCar = parkingLot.fetchCar(ticket);
         //then
-       assertNull(returnedCar);
+        assertNull(fetchedCar);
     }
+    @Test
+    public void should_return_null_when_fetched_car_given_wrong_ticket() throws NotEnoughSpaceException{
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot = new ParkingLot(2);
+        Ticket ticket1 = parkingLot.park(car1);
+        Ticket ticket2 = parkingLot.park(car2);
+        //when
+        Car expectedCar = car1;
+        Car fetchCar = parkingLot.checkWrongTicket(ticket2,expectedCar);
+
+
+        //then
+        assertNull(fetchCar);
+    }
+
 
     
 
