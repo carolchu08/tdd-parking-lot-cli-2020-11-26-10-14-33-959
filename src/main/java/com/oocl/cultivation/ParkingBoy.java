@@ -36,4 +36,8 @@ public class ParkingBoy {
         }
         return null;
     }
+
+    public List<ParkingLot> getParkingLot() {
+        return parkingLot;
+    }
 }

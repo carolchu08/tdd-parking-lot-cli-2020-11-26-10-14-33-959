@@ -52,4 +52,13 @@ public class ParkingLot {
 
     }
 
+    public int getRemainingSpace(){
+
+        return this.capacity - ticketCarMap.size();
+
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
 }
