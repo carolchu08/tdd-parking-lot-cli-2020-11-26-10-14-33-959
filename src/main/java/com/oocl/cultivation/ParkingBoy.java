@@ -11,6 +11,10 @@ public class ParkingBoy {
         this.parkingLot = parkingLot;
     }
 
+    public ParkingBoy() {
+
+    }
+
     public Ticket park(Car car) throws NotEnoughSpaceException{
         for(ParkingLot eachParkingLot : parkingLot) {
             if(eachParkingLot.isHasSpaceForParking()) {

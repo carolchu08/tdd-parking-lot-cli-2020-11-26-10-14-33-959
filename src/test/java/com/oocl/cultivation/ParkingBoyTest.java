@@ -186,7 +186,7 @@ class ParkingBoyTest {
 
     }
     @Test
-    public void should__when__given_() throws NotEnoughSpaceException {
+    public void should_park_car_to_parkinglot_with_higher_rate_when_park_given_two_parkinglot() throws NotEnoughSpaceException {
         //given
         List<ParkingLot> parkingLotList = new ArrayList<>();
         ParkingLot parkingLot1= new ParkingLot(3);
@@ -209,7 +209,23 @@ class ParkingBoyTest {
         assertEquals(4,parkingLot2.getRemainingSpace());
         
     }
-    
+    @Test
+    public void should_successfully_add_parkingboy_to_management_list_when_add_parkingboy_given_a_manager() {
+        //given
+        ParkingBoy parkingBoy1 = new ParkingBoy();
+        ParkingBoy parkingBoy2 =new ParkingBoy();
+        ParkingManager parkingManager = new ParkingManager();
+        List <ParkingBoy> parkingBoyList = new ArrayList<>();
+        parkingBoyList.add(parkingBoy1);
+        parkingBoyList.add(parkingBoy2);
+        //when
+        parkingManager.addManagementList(parkingBoyList);
+
+        //then
+        assertEquals("ParkingBoy1",parkingBoy1);
+
+    }
+
 
 
 }

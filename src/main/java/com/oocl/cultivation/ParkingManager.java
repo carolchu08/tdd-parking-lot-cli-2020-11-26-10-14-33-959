@@ -1,4 +1,18 @@
 package com.oocl.cultivation;
 
-public class ParkingManager {
+import java.util.List;
+
+public class ParkingManager extends ParkingBoy{
+
+    public ParkingManager(List<ParkingLot> parkingLot) {
+        super(parkingLot);
+    }
+
+    public ParkingManager() {
+        super();
+    }
+
+    public ParkingBoy addManagementList(List<ParkingBoy> parkingBoyList) {
+        return null;
+    }
 }
