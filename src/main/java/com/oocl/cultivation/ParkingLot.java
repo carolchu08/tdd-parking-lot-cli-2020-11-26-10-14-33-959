@@ -25,23 +25,23 @@ public class ParkingLot {
         this.ticketCarMap.put(ticket,car);
         return ticket;
     }
-    public Car fetchCar (Ticket ticket){
+    public Car fetchCar (Ticket ticket) throws UnrecognizedParkingTicketException{
         if(ticketCarMap.containsKey(ticket)){
             Car fetchedCar = ticketCarMap.get(ticket);
             ticketCarMap.remove(ticket, ticketCarMap.get(ticket));
             return fetchedCar;
         }
-        return null;
+        throw new UnrecognizedParkingTicketException("Unrecognized parking ticket");
 
     }
 
 
-    public Car checkWrongTicket(Ticket ticket, Car expectedCar){
+    public Car checkWrongTicket(Ticket ticket, Car expectedCar) throws UnrecognizedParkingTicketException{
 
         if(expectedCar.equals(ticketCarMap.get(ticket))){
             return expectedCar;
         }
-        return null;
+        throw new UnrecognizedParkingTicketException("Unrecognized parking ticket");
 
     }
 
