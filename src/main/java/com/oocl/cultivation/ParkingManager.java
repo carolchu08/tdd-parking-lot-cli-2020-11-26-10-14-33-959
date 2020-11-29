@@ -27,4 +27,10 @@ public class ParkingManager extends ParkingBoy{
     public List<ParkingBoy> getParkingManagerList() {
         return parkingManagerList;
     }
+
+    public Ticket orderParkingAction(Car car, ParkingBoy parkingBoy) throws NotEnoughSpaceException {
+
+                return parkingBoy.park(car);
+
+    }
 }

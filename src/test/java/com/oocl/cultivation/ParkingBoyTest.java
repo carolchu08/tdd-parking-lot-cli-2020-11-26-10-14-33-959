@@ -242,7 +242,7 @@ class ParkingBoyTest {
         ParkingManager parkingManager2 = new ParkingManager();
 
         //when
-        parkingManager1.addManagementList(parkingManager1);
+        parkingManager1.addManagementList(parkingManager2);
 
         //then
         assertEquals(0,parkingManager1.getParkingManagerList().size());
@@ -250,14 +250,35 @@ class ParkingBoyTest {
 
 
     @Test
-    public void should_unable_to_order_parkingboys_for_parking_when_order_park_given_the_parking_boys_not_in_the_list() {
+    public void should_unable_to_order_parkingboys_for_parking_when_order_park_given_the_parking_boys_not_in_the_list() throws NotEnoughSpaceException {
         //given
-
-
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Car car3 = new Car();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(2);
+        ParkingLot parkingLot3 = new ParkingLot(3);
+        List <ParkingLot> parkingLotList1 = new ArrayList<>();
+        List <ParkingLot> parkingLotList2 = new ArrayList<>();
+        List <ParkingLot> parkingLotList3 = new ArrayList<>();
+        parkingLotList1.add(parkingLot1);
+        parkingLotList2.add(parkingLot2);
+        parkingLotList3.add(parkingLot3);
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLotList1);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLotList2);
+        SmartParkingBoy smartParkingBoy1 = new SmartParkingBoy(parkingLotList3);
+        ParkingManager parkingManager = new ParkingManager();
+        parkingManager.addManagementList(superSmartParkingBoy);
+        parkingManager.addManagementList(smartParkingBoy);
         //when
-
+        Ticket ticket1 = parkingManager.orderParkingAction(car1,smartParkingBoy);
+        Ticket ticket2 = parkingManager.orderParkingAction(car2,superSmartParkingBoy);
+        Ticket ticket3 = parkingManager.orderParkingAction(car3,smartParkingBoy1);
 
         //then
+        assertNotNull(ticket1);
+        assertNotNull(ticket2);
+        assertNull(ticket3);
 
     }
 
