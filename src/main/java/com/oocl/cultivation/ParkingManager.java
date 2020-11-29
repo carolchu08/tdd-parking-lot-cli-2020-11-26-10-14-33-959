@@ -3,8 +3,9 @@ package com.oocl.cultivation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParkingManager extends ParkingBoy{
-    List <ParkingBoy> parkingManagerList;
+public class ParkingManager extends ParkingBoy {
+    List<ParkingBoy> parkingManagerList;
+
     public ParkingManager(List<ParkingLot> parkingLot) {
         super(parkingLot);
     }
@@ -15,11 +16,9 @@ public class ParkingManager extends ParkingBoy{
     }
 
     public void addManagementList(ParkingBoy parkingBoy) {
-        if(!parkingBoy.getClass().equals(ParkingManager.class)) {
+        if (!parkingBoy.getClass().equals(ParkingManager.class)) {
             parkingManagerList.add(parkingBoy);
         }
-
-
 
 
     }
@@ -29,8 +28,9 @@ public class ParkingManager extends ParkingBoy{
     }
 
     public Ticket orderParkingAction(Car car, ParkingBoy parkingBoy) throws NotEnoughSpaceException {
-
-                return parkingBoy.park(car);
-
+        if (parkingManagerList.contains(parkingBoy)) {
+            return parkingBoy.park(car);
+        }
+        return null;
     }
 }
