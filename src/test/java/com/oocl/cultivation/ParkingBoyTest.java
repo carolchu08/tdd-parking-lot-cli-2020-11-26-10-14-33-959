@@ -13,21 +13,21 @@ import static org.mockito.Mockito.verify;
 
 class ParkingBoyTest {
     //    @Test
-//    public void should_parking_boy_call_parking_lot_park_function_once_when_park_the_car() throws NotEnoughSpaceException {
-//        //given
-//        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
-//        List<ParkingLot> parkingLotList = new ArrayList<>();
-//        parkingLotList.add(parkingLot);
-//
-//        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
-//        Car car = new Car();
-//
-//        //when
-//        parkingBoy.park(car);
-//
-//        //then
-//        verify(parkingLot, times(1)).park(car);
-//    }
+    public void should_parking_boy_call_parking_lot_park_function_once_when_park_the_car() throws NotEnoughSpaceException {
+        //given
+        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+       parkingLotList.add(parkingLot);
+
+       ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        Car car = new Car();
+
+        //when
+       parkingBoy.park(car);
+
+        //then
+       verify(parkingLot, times(1)).park(car);
+    }
     @Test
     public void should_return_a_parking_ticket_when_park_the_car_given_a_car_and_parking() throws NotEnoughSpaceException {
         //given
@@ -351,6 +351,38 @@ class ParkingBoyTest {
         assertNotNull(resultCar2);
         assertNull(resultCar3);
     }
+    @Test
+    public void should_return_unrecognized_ticket_msg_when_order_fetch_given_the_ticket_is_invalid() throws NotEnoughSpaceException, UnrecognizedParkingTicketException {
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(2);;
+        List<ParkingLot> parkingLotList1 = new ArrayList<>();
+        List<ParkingLot> parkingLotList2 = new ArrayList<>();
+        parkingLotList1.add(parkingLot1);
+        parkingLotList2.add(parkingLot2);
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLotList1);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLotList2);
+        ParkingManager parkingManager = new ParkingManager();
+        parkingManager.addManagementList(superSmartParkingBoy);
+        parkingManager.addManagementList(smartParkingBoy);
+        Ticket ticket1 = parkingManager.orderParkingAction(car1, smartParkingBoy);
+        Ticket ticket2 = parkingManager.orderParkingAction(car2, superSmartParkingBoy);
+        Car resultCar1 = parkingManager.orderFetchCar(ticket1,smartParkingBoy);
+                
+        //when
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, () -> {
+            parkingManager.orderFetchCar(ticket1,smartParkingBoy);
+        });
+        
+        //then
+        assertEquals("Unrecognized parking ticket", unrecognizedParkingTicketException.getMessage());
+
+
+
+    }
+    
 
 
 }

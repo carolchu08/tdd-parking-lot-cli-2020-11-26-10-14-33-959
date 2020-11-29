@@ -40,5 +40,4 @@ public class ParkingManager extends ParkingBoy {
         }
         return null;
     }
-
 }
