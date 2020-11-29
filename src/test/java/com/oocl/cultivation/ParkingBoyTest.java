@@ -214,6 +214,8 @@ class ParkingBoyTest {
         //given
         ParkingBoy parkingBoy1 = new ParkingBoy();
         ParkingBoy parkingBoy2 =new ParkingBoy();
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
         ParkingManager parkingManager = new ParkingManager();
         List <ParkingBoy> parkingBoyList = new ArrayList<>();
         parkingBoyList.add(parkingBoy1);
@@ -222,12 +224,43 @@ class ParkingBoyTest {
         for (ParkingBoy parkingBoy : parkingBoyList) {
             parkingManager.addManagementList(parkingBoy);
         }
+        parkingManager.addManagementList(superSmartParkingBoy);
+        parkingManager.addManagementList(smartParkingBoy);
+
 
         //then
         assertEquals(parkingBoy1,parkingManager.getParkingManagerList().get(0));
         assertEquals(parkingBoy2,parkingManager.getParkingManagerList().get(1));
+        assertEquals(superSmartParkingBoy,parkingManager.getParkingManagerList().get(2));
+        assertEquals(smartParkingBoy,parkingManager.getParkingManagerList().get(3));
 
     }
+    @Test
+    public void should_return_size_is_0_for_parkingmangerList_when_add_parkingmanger_to_management_list_when_add_other_parkingmanager_given_a_manager() {
+        //given
+        ParkingManager parkingManager1 = new ParkingManager();
+        ParkingManager parkingManager2 = new ParkingManager();
+
+        //when
+        parkingManager1.addManagementList(parkingManager1);
+
+        //then
+        assertEquals(0,parkingManager1.getParkingManagerList().size());
+    }
+
+
+    @Test
+    public void should_unable_to_order_parkingboys_for_parking_when_order_park_given_the_parking_boys_not_in_the_list() {
+        //given
+
+
+        //when
+
+
+        //then
+
+    }
+
 
 
 

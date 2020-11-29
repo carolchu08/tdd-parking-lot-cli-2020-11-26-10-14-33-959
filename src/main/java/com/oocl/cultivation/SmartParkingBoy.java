@@ -9,6 +9,10 @@ public class SmartParkingBoy extends ParkingBoy {
         super(parkingLotList);
     }
 
+    public SmartParkingBoy() {
+
+    }
+
     @Override
     public Ticket park(Car car) throws NotEnoughSpaceException {
         ParkingLot parkingLotToBeUsed = Collections.max(this.getParkingLot(), Comparator.comparing(c -> c.getRemainingSpace()));
