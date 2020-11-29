@@ -15,8 +15,9 @@ public class ParkingManager extends ParkingBoy{
     }
 
     public void addManagementList(ParkingBoy parkingBoy) {
-
+        if(!parkingBoy.getClass().equals(ParkingManager.class)) {
             parkingManagerList.add(parkingBoy);
+        }
 
 
 
