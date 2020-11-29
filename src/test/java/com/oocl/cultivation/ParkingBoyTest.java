@@ -281,6 +281,37 @@ class ParkingBoyTest {
         assertNull(ticket3);
 
     }
+    @Test
+    public void should_return_not_enough_space_msg_when_orderparkingaction_given_the_parkinglots_managed_by_the_parkingboy_does_not_have_enough_space() throws NotEnoughSpaceException {
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Car car3 = new Car();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        List <ParkingLot> parkingLotList1 = new ArrayList<>();
+        List <ParkingLot> parkingLotList2 = new ArrayList<>();
+        parkingLotList1.add(parkingLot1);
+        parkingLotList2.add(parkingLot2);
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLotList1);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLotList2);
+        ParkingManager parkingManager = new ParkingManager();
+        parkingManager.addManagementList(superSmartParkingBoy);
+        parkingManager.addManagementList(smartParkingBoy);
+        //when
+        Ticket ticket1 = parkingManager.orderParkingAction(car1,smartParkingBoy);
+        Ticket ticket2 = parkingManager.orderParkingAction(car2,superSmartParkingBoy);
+        NotEnoughSpaceException notEnoughSpaceException = assertThrows(NotEnoughSpaceException.class, () -> {
+            parkingManager.orderParkingAction(car3,superSmartParkingBoy);
+        });
+
+
+        //then
+        assertNotNull(ticket1);
+        assertNotNull(ticket2);
+        assertEquals("Not Enough Space",notEnoughSpaceException.getMessage());
+    }
+    
 
 
 
