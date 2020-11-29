@@ -162,8 +162,8 @@ class ParkingBoyTest {
     public void should_park_cars_to_parking_lot_with_more_capacity_when_park_given_two_parking_lot() throws NotEnoughSpaceException {
         //given
         List<ParkingLot> parkingLotList = new ArrayList<>();
-        ParkingLot parkingLot1= new ParkingLot(3);
-        ParkingLot parkingLot2= new ParkingLot(5);
+        ParkingLot parkingLot1 = new ParkingLot(3);
+        ParkingLot parkingLot2 = new ParkingLot(5);
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLotList);
@@ -181,16 +181,17 @@ class ParkingBoyTest {
 
 
         //then
-        assertEquals(2,parkingLot1.getRemainingSpace());
-        assertEquals(3,parkingLot2.getRemainingSpace());
+        assertEquals(2, parkingLot1.getRemainingSpace());
+        assertEquals(3, parkingLot2.getRemainingSpace());
 
     }
+
     @Test
     public void should_park_car_to_parkinglot_with_higher_rate_when_park_given_two_parkinglot() throws NotEnoughSpaceException {
         //given
         List<ParkingLot> parkingLotList = new ArrayList<>();
-        ParkingLot parkingLot1= new ParkingLot(3);
-        ParkingLot parkingLot2= new ParkingLot(5);
+        ParkingLot parkingLot1 = new ParkingLot(3);
+        ParkingLot parkingLot2 = new ParkingLot(5);
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLotList);
@@ -203,21 +204,22 @@ class ParkingBoyTest {
         Ticket ticket1 = superSmartParkingBoy.park(car1);
         Ticket ticket2 = superSmartParkingBoy.park(car2);
         Ticket ticket3 = superSmartParkingBoy.park(car3);
-        
+
         //then
-        assertEquals(1,parkingLot1.getRemainingSpace());
-        assertEquals(4,parkingLot2.getRemainingSpace());
-        
+        assertEquals(1, parkingLot1.getRemainingSpace());
+        assertEquals(4, parkingLot2.getRemainingSpace());
+
     }
+
     @Test
     public void should_successfully_add_parkingboy_to_management_list_when_add_parkingboy_given_a_manager() {
         //given
         ParkingBoy parkingBoy1 = new ParkingBoy();
-        ParkingBoy parkingBoy2 =new ParkingBoy();
+        ParkingBoy parkingBoy2 = new ParkingBoy();
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy();
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
         ParkingManager parkingManager = new ParkingManager();
-        List <ParkingBoy> parkingBoyList = new ArrayList<>();
+        List<ParkingBoy> parkingBoyList = new ArrayList<>();
         parkingBoyList.add(parkingBoy1);
         parkingBoyList.add(parkingBoy2);
         //when
@@ -229,12 +231,13 @@ class ParkingBoyTest {
 
 
         //then
-        assertEquals(parkingBoy1,parkingManager.getParkingManagerList().get(0));
-        assertEquals(parkingBoy2,parkingManager.getParkingManagerList().get(1));
-        assertEquals(superSmartParkingBoy,parkingManager.getParkingManagerList().get(2));
-        assertEquals(smartParkingBoy,parkingManager.getParkingManagerList().get(3));
+        assertEquals(parkingBoy1, parkingManager.getParkingManagerList().get(0));
+        assertEquals(parkingBoy2, parkingManager.getParkingManagerList().get(1));
+        assertEquals(superSmartParkingBoy, parkingManager.getParkingManagerList().get(2));
+        assertEquals(smartParkingBoy, parkingManager.getParkingManagerList().get(3));
 
     }
+
     @Test
     public void should_return_size_is_0_for_parkingmangerList_when_add_parkingmanger_to_management_list_when_add_other_parkingmanager_given_a_manager() {
         //given
@@ -245,7 +248,7 @@ class ParkingBoyTest {
         parkingManager1.addManagementList(parkingManager2);
 
         //then
-        assertEquals(0,parkingManager1.getParkingManagerList().size());
+        assertEquals(0, parkingManager1.getParkingManagerList().size());
     }
 
 
@@ -258,9 +261,9 @@ class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(2);
         ParkingLot parkingLot3 = new ParkingLot(3);
-        List <ParkingLot> parkingLotList1 = new ArrayList<>();
-        List <ParkingLot> parkingLotList2 = new ArrayList<>();
-        List <ParkingLot> parkingLotList3 = new ArrayList<>();
+        List<ParkingLot> parkingLotList1 = new ArrayList<>();
+        List<ParkingLot> parkingLotList2 = new ArrayList<>();
+        List<ParkingLot> parkingLotList3 = new ArrayList<>();
         parkingLotList1.add(parkingLot1);
         parkingLotList2.add(parkingLot2);
         parkingLotList3.add(parkingLot3);
@@ -271,9 +274,9 @@ class ParkingBoyTest {
         parkingManager.addManagementList(superSmartParkingBoy);
         parkingManager.addManagementList(smartParkingBoy);
         //when
-        Ticket ticket1 = parkingManager.orderParkingAction(car1,smartParkingBoy);
-        Ticket ticket2 = parkingManager.orderParkingAction(car2,superSmartParkingBoy);
-        Ticket ticket3 = parkingManager.orderParkingAction(car3,smartParkingBoy1);
+        Ticket ticket1 = parkingManager.orderParkingAction(car1, smartParkingBoy);
+        Ticket ticket2 = parkingManager.orderParkingAction(car2, superSmartParkingBoy);
+        Ticket ticket3 = parkingManager.orderParkingAction(car3, smartParkingBoy1);
 
         //then
         assertNotNull(ticket1);
@@ -281,6 +284,7 @@ class ParkingBoyTest {
         assertNull(ticket3);
 
     }
+
     @Test
     public void should_return_not_enough_space_msg_when_orderparkingaction_given_the_parkinglots_managed_by_the_parkingboy_does_not_have_enough_space() throws NotEnoughSpaceException {
         //given
@@ -289,8 +293,8 @@ class ParkingBoyTest {
         Car car3 = new Car();
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(1);
-        List <ParkingLot> parkingLotList1 = new ArrayList<>();
-        List <ParkingLot> parkingLotList2 = new ArrayList<>();
+        List<ParkingLot> parkingLotList1 = new ArrayList<>();
+        List<ParkingLot> parkingLotList2 = new ArrayList<>();
         parkingLotList1.add(parkingLot1);
         parkingLotList2.add(parkingLot2);
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLotList1);
@@ -299,21 +303,54 @@ class ParkingBoyTest {
         parkingManager.addManagementList(superSmartParkingBoy);
         parkingManager.addManagementList(smartParkingBoy);
         //when
-        Ticket ticket1 = parkingManager.orderParkingAction(car1,smartParkingBoy);
-        Ticket ticket2 = parkingManager.orderParkingAction(car2,superSmartParkingBoy);
+        Ticket ticket1 = parkingManager.orderParkingAction(car1, smartParkingBoy);
+        Ticket ticket2 = parkingManager.orderParkingAction(car2, superSmartParkingBoy);
         NotEnoughSpaceException notEnoughSpaceException = assertThrows(NotEnoughSpaceException.class, () -> {
-            parkingManager.orderParkingAction(car3,superSmartParkingBoy);
+            parkingManager.orderParkingAction(car3, superSmartParkingBoy);
         });
 
 
         //then
         assertNotNull(ticket1);
         assertNotNull(ticket2);
-        assertEquals("Not Enough Space",notEnoughSpaceException.getMessage());
+        assertEquals("Not Enough Space", notEnoughSpaceException.getMessage());
     }
-    
 
+    @Test
+    public void should_unable_to_order_parkingboy_to_fetch_car_for_parking_when_order_park_given_the_parking_boys_not_in_the_list() throws NotEnoughSpaceException, UnrecognizedParkingTicketException {
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Car car3 = new Car();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(2);
+        ParkingLot parkingLot3 = new ParkingLot(3);
+        List<ParkingLot> parkingLotList1 = new ArrayList<>();
+        List<ParkingLot> parkingLotList2 = new ArrayList<>();
+        List<ParkingLot> parkingLotList3 = new ArrayList<>();
+        parkingLotList1.add(parkingLot1);
+        parkingLotList2.add(parkingLot2);
+        parkingLotList3.add(parkingLot3);
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLotList1);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLotList2);
+        SmartParkingBoy smartParkingBoy1 = new SmartParkingBoy(parkingLotList3);
+        ParkingManager parkingManager = new ParkingManager();
+        parkingManager.addManagementList(superSmartParkingBoy);
+        parkingManager.addManagementList(smartParkingBoy);
+        Ticket ticket1 = parkingManager.orderParkingAction(car1, smartParkingBoy);
+        Ticket ticket2 = parkingManager.orderParkingAction(car2, superSmartParkingBoy);
+        Ticket ticket3 =smartParkingBoy1.park(car3);
 
+        //when
+        Car resultCar1 = parkingManager.orderFetchCar(ticket1,smartParkingBoy);
+        Car resultCar2 = parkingManager.orderFetchCar(ticket2,superSmartParkingBoy);
+        Car resultCar3 = parkingManager.orderFetchCar(ticket3,smartParkingBoy1);
+
+        //then
+        assertNotNull(resultCar1);
+        assertNotNull(resultCar2);
+        assertNull(resultCar3);
+    }
 
 
 }

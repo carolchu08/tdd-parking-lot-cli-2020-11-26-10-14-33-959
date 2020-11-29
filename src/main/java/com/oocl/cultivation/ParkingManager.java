@@ -33,4 +33,12 @@ public class ParkingManager extends ParkingBoy {
         }
         return null;
     }
+
+    public Car orderFetchCar(Ticket ticket, ParkingBoy parkingBoy) throws UnrecognizedParkingTicketException {
+        if(parkingManagerList.contains(parkingBoy)){
+            return parkingBoy.fetchCar(ticket);
+        }
+        return null;
+    }
+
 }
